@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">Signup Form</div>
+      <div>
+        <style>
+          h5 {
+            color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        </style>
+        {% for message in messages %}
+        <h5>{{message}}</h5>
+        {% endfor %}
+      </div>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="field">
+          <input type="text" required name="username" />
+          <label>Username</label>
+        </div>
+        <div class="field">
+          <input type="text" required name="email" />
+          <label>Email Address</label>
+        </div>
+        <div class="field">
+          <input type="password" required name="password" />
+          <label>Password</label>
+        </div>
+        <div class="field">
+          <input type="password" required name="password2" />
+          <label>Confirm Password</label>
+        </div>
+        <br />
+        <div class="field">
+          <input type="submit" value="Signup" />
+        </div>
+        <div class="login-link">
+          Already a member? <a href="#">Login now</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
