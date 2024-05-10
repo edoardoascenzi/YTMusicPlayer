@@ -56,7 +56,7 @@ def signup(request):
         user.save()
 
         #log the user in
-        user_login = auth.authenticate(username=username, password=password)
+        user_login = auth.authenticate(email=email, password=password)
         auth.login(request, user_login)
         return redirect('/') #redirect to the home page
 
@@ -65,7 +65,7 @@ def signup(request):
         return render(request, 'signup.html')
     
 @login_required(login_url='login')
-def logout(request): #funziona ma non funziona il bottone del logout
+def logout(request): 
     auth.logout(request)
     return redirect('login')
 
