@@ -1,4 +1,5 @@
 import email
+from email.mime import audio
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -11,85 +12,35 @@ def index(request):
     if request.method == 'POST':
         YT_url = request.POST['YT_url']
         video_id = resolve_url(YT_url)
-        if video_id == "":
-            messages.info(request, 'Youtube URL invalid')
-            return redirect('/')
+        video_info = fatch_video_info(video_id)
 
-        url = "https://yt-api.p.rapidapi.com/dl"
-
-        querystring = {"id":video_id}
-
-        headers = {
-            "X-RapidAPI-Key": "0311a97011msh0728878f346d7d8p19c90ejsnce0feef60c8e",
-            "X-RapidAPI-Host": "yt-api.p.rapidapi.com"
-        }
-
-        response = requests.get(url, headers=headers, params=querystring)
-
-        if response.status_code != 200:
-            messages.info(request, 'Video not found')
-            return redirect('/')
-        response_data = response.json()
-        # print(response_data)
-
-        #maybe it is better to wrap all the following code inside a try and except
-        if response_data['status'] != 'OK': 
+        if video_info is None:
             messages.info(request, 'Error in fatching the video')
             return redirect('/')
         
-        title = response_data.get('title', "")
-        lengthSeconds = response_data.get('lengthSeconds', 0)
-        channelTitle = response_data.get('channelTitle', "")
-        # adaptiveFormats is a list of dict -> inside the 21th item there is the url of the audio stream
-        audio_url = response_data.get('adaptiveFormats', [{}])[21].get('url',"")
-        print(title)
-        print(lengthSeconds)
-        print(channelTitle)
-        print(audio_url)
-
+        # use context as a list in order to be able to add more feature like the youtube search that returns more items
+        context = {
+            'video_infos' : [video_info]
+        }
+        return render(request, 'index.html', context)
         
-            
-        return redirect('music')
-        
-            
-
     return render(request, 'index.html')
 
-def resolve_url(url):
-    """
-    url -> Youtube video link
-    return "" if the format of the link is not correct
-    else extract the video ID
-    """
-    if 'www.youtube.com/watch?v=' not in url:
-        return ""
-    separator1 = url.find("=")
-    separator2 = url.find("&")
-    
-    if separator1 == -1:
-        # = key not found
-        return ""
-    
-    if separator2 != -1:
-        # & key found, so consider it
-        id = url[separator1+1:separator2]
-    else:
-        # & key not found, so take till the end
-        id = url[separator1+1:]
 
-    if len(id) != 11:
-        # id is either too long or too short
-        return ""
-    
-    return id
-    
+@login_required(login_url='login')
+def stream(request, pk):
+    video_id = pk
+    context = fatch_video_info(video_id)
+    if context is None:
+        messages.info(request, 'Error in fatching the video')
+        return redirect('/')
+    return render(request, 'stream.html', context)
+        
 
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        print(email)
-        print(password)
         user = auth.authenticate(username=username, password=password)
 
         print(user)
@@ -147,3 +98,82 @@ def logout(request):
 @login_required(login_url='login')
 def music(request):
     return render(request, 'music.html')
+
+# UTILS
+
+def resolve_url(url):
+    """
+    url -> Youtube video link
+    return "" if the format of the link is not correct
+    else extract the video ID
+    """
+    if 'www.youtube.com/watch?v=' not in url:
+        return ""
+    separator1 = url.find("=")
+    separator2 = url.find("&")
+    
+    if separator1 == -1:
+        # = key not found
+        return ""
+    
+    if separator2 != -1:
+        # & key found, so consider it
+        id = url[separator1+1:separator2]
+    else:
+        # & key not found, so take till the end
+        id = url[separator1+1:]
+
+    if len(id) != 11:
+        # id is either too long or too short
+        return ""
+    
+    return id
+
+def fatch_video_info(video_id):
+    """
+    Fatch the video details and return a dict with all the infos
+    If errors occurs it returns None
+    """
+    if video_id == "":
+            return None
+
+    url = "https://yt-api.p.rapidapi.com/dl"
+
+    querystring = {"id":video_id}
+
+    headers = {
+        "X-RapidAPI-Key": "0311a97011msh0728878f346d7d8p19c90ejsnce0feef60c8e",
+        "X-RapidAPI-Host": "yt-api.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+
+    if response.status_code != 200:
+        return None
+
+    response_data = response.json()
+
+    status = response_data.get('status', "")
+    title = response_data.get('title', "")
+    channelTitle = response_data.get('channelTitle', "")
+    thumbnailSmall = response_data.get('thumbnail', [{}] )[1].get('url',"")
+    thumbnail = response_data.get('thumbnail', [{}] )[2].get('url',"")
+    lengthSeconds = response_data.get('lengthSeconds', 0)
+    # adaptiveFormats is a list of dict -> inside the 21th item there is the url of the audio stream
+    audio_url = response_data.get('adaptiveFormats', [{}])[21].get('url',"")
+
+    if status == "" or audio_url == "":
+        return None
+
+    video_info = {
+        'video_id' : video_id,
+        'status' : status,
+        'title' : title,
+        'thumbnailSmall' : thumbnailSmall,
+        'thumbnail' : thumbnail,
+        'channelTitle' : channelTitle,
+        'lengthSeconds' : lengthSeconds,
+        'audio_url' : audio_url,
+    }
+
+    return video_info

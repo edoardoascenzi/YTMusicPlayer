@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music Streaming Service</title>
+    <title>YT Music Player</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   </head>
   <body
@@ -38,10 +38,6 @@
           <span class="sidebar-link-icon">🏠</span>
           Home
         </a>
-        <a href="/search" class="sidebar-link">
-          <span class="sidebar-link-icon">🔍</span>
-          Search
-        </a>
       </div>
     </div>
 
@@ -59,11 +55,11 @@
     >
       <!-- Music Player Interface -->
       <div class="player-container">
-        <br /><br /><br /><br /><br />
-        <img class="album-cover" src="{{track_image}}" alt="Album Cover" />
+        <br /><br /><br />
+        <img class="album-cover" src="{{thumbnail}}" alt="Thumbnail" />
         <div class="song-info">
-          <h2 class="song-title">{{track_name}}</h2>
-          <h3 class="artist-name">{{artist_name}}</h3>
+          <h2 class="video-title">{{title}}</h2>
+          <h3 class="channel-title">{{channelTitle}}</h3>
         </div>
         <div class="player-controls">
           <button id="prev" class="control-btn">&#9668;</button>

@@ -17,6 +17,19 @@
     <input type="submit" value="Search" />
   </div>
   <div class="logout-link">
-    <a href="/logout">Logout</a>
+    <a href="/logout" style="text-decoration: none;">Logout</a>
   </div>
+
+  {% for video_info in video_infos %}
+  <a style="text-decoration: none;" href="/stream/{{video_info.video_id}}">
+    <img
+    class="album-cover"
+    src="{{video_info.thumbnailSmall}}"
+    alt="Thumbnail"
+  />
+  <div class="song-info">
+    <h2 class="video-title">{{video_info.title}}</h2>
+    <h3 class="channel-title">{{video_info.channelTitle}}</h3>
+  </div>
+  {% endfor %}
 </form>

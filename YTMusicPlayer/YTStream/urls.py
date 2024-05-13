@@ -6,5 +6,5 @@ urlpatterns = [
     path('login', views.login, name='login'), 
     path('signup', views.signup, name='signup'), 
     path('logout', views.logout, name='logout'), 
-    path('music', views.music, name='music'), 
+    path('stream/<str:pk>/', views.stream, name='stream'), 
 ]
