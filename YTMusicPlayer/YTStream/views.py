@@ -11,11 +11,11 @@ def index(request):
 
 def login(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST["password"]
         print(email)
         print(password)
-        user = auth.authenticate(email=email, password=password)
+        user = auth.authenticate(username=username, password=password)
 
         print(user)
         if user is None:
@@ -56,7 +56,7 @@ def signup(request):
         user.save()
 
         #log the user in
-        user_login = auth.authenticate(email=email, password=password)
+        user_login = auth.authenticate(username=username, password=password)
         auth.login(request, user_login)
         return redirect('/') #redirect to the home page
 
@@ -69,4 +69,5 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
-
+def music(request):
+    return render(request, 'music.html')
