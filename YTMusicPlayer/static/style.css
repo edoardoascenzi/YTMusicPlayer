@@ -10,16 +10,16 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background: #f2f2f2;
+  background: #121212;
   /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
 }
 ::selection{
-  background: #4158d0;
-  color: #fff;
+  background: #170faf;
+  color: #afdde5;
 }
 .wrapper{
   width: 380px;
-  background: #fff;
+  background: #2b2b2b;
   border-radius: 15px;
   box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 }
@@ -31,7 +31,18 @@ html,body{
   color: #fff;
   user-select: none;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: #2b2b2b;
+  /* background: linear-gradient(-135deg, #0fa4af, #afdde5); */
+}
+.wrapper .welcome{
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  user-select: none;
+  border-radius: 15px 15px 0 0;
+  background: #2b2b2b;
 }
 .wrapper form{
   padding: 10px 30px 50px 30px;
@@ -48,19 +59,21 @@ html,body{
   outline: none;
   font-size: 17px;
   padding-left: 20px;
-  border: 1px solid lightgrey;
+  border: 1px solid #424242;
   border-radius: 25px;
   transition: all 0.3s ease;
+  background: #424242;
+  color: #fff;
 }
-.wrapper form .field input:focus,
+/* .wrapper form .field input:focus,
 form .field input:valid{
-  border-color: #4158d0;
-}
+  border-color: #29377d;
+} */
 .wrapper form .field label{
   position: absolute;
   top: 50%;
   left: 20px;
-  color: #999999;
+  color: gray;
   font-weight: 400;
   font-size: 17px;
   pointer-events: none;
@@ -71,9 +84,9 @@ form .field input:focus ~ label,
 form .field input:valid ~ label{
   top: 0%;
   font-size: 16px;
-  color: #4158d0;
-  background: #fff;
-  transform: translateY(-50%);
+  /* color: lightgray; */
+  /* background: #2b2b2b; */
+  transform: translateY(-80%);
 }
 form .content{
   display: flex;
@@ -94,13 +107,11 @@ form .content input{
   background: red;
 }
 form .content label{
-  color: #262626;
+  color: #fff;
   user-select: none;
   padding-left: 5px;
 }
-form .content .pass-link{
-  color: "";
-}
+
 form .field input[type="submit"]{
   color: #fff;
   border: none;
@@ -109,23 +120,33 @@ form .field input[type="submit"]{
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #170faf, #afdde5);
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active{
   transform: scale(0.95);
 }
-form .signup-link{
-  color: #262626;
+form .signup-link,
+form .login-link{
+  color: #fff;
   margin-top: 20px;
   text-align: center;
 }
 form .pass-link a,
-form .signup-link a{
-  color: #4158d0;
+form .signup-link a,
+form .login-link a{
+  color: #afdde5;
   text-decoration: none;
 }
 form .pass-link a:hover,
-form .signup-link a:hover{
+form .signup-link a:hover,
+form .login-link a:hover{
   text-decoration: underline;
+}
+
+.wrapper .messages b{
+  color: rgb(225, 67, 67);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

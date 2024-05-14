@@ -8,24 +8,14 @@
     <title>YT Music Player</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   </head>
-  <body
-    style="
-      margin: 0;
-      padding: 0;
-      background: #121212;
-      font-family: Arial, sans-serif;
-      color: #fff;
-    "
-  >
+  <body>
     <!-- Sidebar remains unchanged -->
-    <div class="sidebar">
+    <div class="wrapper">
       <!-- Welcome User -->
-      <div class="sidebar-section">
+      <div class="welcome">
         <span style="margin-left: 14px" class="sidebar-link-icon">👤</span>
         <b>Welcome, {{user.username}}</b>
         <br />
-        <br />
-
         <a href="/logout">
           <span class="sidebar-link-icon">↪️</span>
           <b>Logout</b>
@@ -42,17 +32,7 @@
     </div>
 
     <!-- Main content area where we will add the music player -->
-    <div
-      class="music-player"
-      style="
-        margin-left: 240px;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(100vh - 90px);
-      "
-    >
+    <div class="music-player">
       <!-- Music Player Interface -->
       <div class="player-container">
         <br /><br /><br />

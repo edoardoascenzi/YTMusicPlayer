@@ -3,26 +3,17 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Signup Form</title>
+    <title>YT Music Player</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
     <div class="wrapper">
-      <div class="title">Signup Form</div>
-      <div>
-        <style>
-          h5 {
-            color: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        </style>
+      <div class="title">Sign up Form</div>
+      <div class="messages">
         {% for message in messages %}
-        <h5>{{message}}</h5>
+        <b>{{message}}</b>
         {% endfor %}
       </div>
-
       <form action="" method="POST">
         {% csrf_token %}
         <div class="field">
@@ -43,7 +34,7 @@
         </div>
         <br />
         <div class="field">
-          <input type="submit" value="Signup" />
+          <input type="submit" value="Sign up" />
         </div>
         <div class="login-link">
           Already a member? <a href="/login">Login now</a>
