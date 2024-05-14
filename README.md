@@ -17,3 +17,5 @@
 - Add the whole youtube features, not just the link, like the browsing, the playlist thing,..
 
 - Save the history of the videos played
+
+- Add remeber me and forgot password feature

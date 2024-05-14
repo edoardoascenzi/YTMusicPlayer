@@ -47,12 +47,32 @@ html,body{
 .wrapper form{
   padding: 10px 30px 50px 30px;
 }
+form .field_index,
 .wrapper form .field{
   height: 50px;
   width: 100%;
   margin-top: 20px;
   position: relative;
 }
+
+.form .field_index {
+  display: flex;
+  align-items: center;
+}
+
+form .field_index input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 15px; 
+  padding-left: 20px;
+  border: 1px solid #424242;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: #424242;
+  color: #fff;
+}
+
 .wrapper form .field input{
   height: 100%;
   width: 100%;
@@ -65,10 +85,8 @@ html,body{
   background: #424242;
   color: #fff;
 }
-/* .wrapper form .field input:focus,
-form .field input:valid{
-  border-color: #29377d;
-} */
+
+form .field_index  label,
 .wrapper form .field label{
   position: absolute;
   top: 50%;
@@ -80,6 +98,9 @@ form .field input:valid{
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
+
+
+form .field_index input:focus ~ label,
 form .field input:focus ~ label,
 form .field input:valid ~ label{
   top: 0%;
@@ -112,6 +133,8 @@ form .content label{
   padding-left: 5px;
 }
 
+
+form .field_index input[type="submit"],
 form .field input[type="submit"]{
   color: #fff;
   border: none;
@@ -124,6 +147,7 @@ form .field input[type="submit"]{
   background: #5978a5;
   transition: all 0.3s ease;
 }
+form .field_index[type="submit"]:active,
 form .field input[type="submit"]:active{
   transform: scale(0.95);
 }
