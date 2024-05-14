@@ -17,26 +17,34 @@
       <div class="link-container">
         <a href="/" class="link"> Home </a>
         <a href="/logout" , class="link"> Logout </a>
-      </div>
-      <br />
-    {% comment %} </div>
-    <div class="wrapper"> {% endcomment %}
-      <div class="music-player">
-        <!-- Music Player Interface -->
+
+        <br />
+        <div class="music-player">
+          <!-- Music Player Interface -->
           <br />
           <div class="song-info">
-            <b class="video-title">{{title}}</b> <br>
+            <b class="video-title">{{title}}</b> <br />
             <b class="channel-title">{{channelTitle}}</b>
           </div>
           <div class="album-cover-container">
             <img class="album-cover" src="{{thumbnail}}" alt="Thumbnail" />
           </div>
           <div class="player-controls">
-            <button id="prev" class="control-btn" style="transform: rotate(-120deg)">&#8634;</button>
+            <button
+              id="prev"
+              class="control-btn"
+              style="transform: rotate(-120deg)">&#8634;
+            </button>
             <button id="play-pause" class="control-btn play-btn">
               &#9658;
             </button>
-            <button id="next" class="control-btn" style="transform: rotate(120deg)">&#8635;</button>
+            <button
+              id="next"
+              class="control-btn"
+              style="transform: rotate(120deg)"
+            >
+              &#8635;
+            </button>
           </div>
           <div class="progress-bar" id="progress-bar">
             <div class="progress" id="progress"></div>
@@ -49,6 +57,48 @@
 
         <audio id="audio-player" src="{{audio_url}}"></audio>
       </div>
+
+    </br></br>
+      <footer class="footer">
+        <div class="waves">
+          <div class="wave" id="wave1"></div>
+          <div class="wave" id="wave2"></div>
+          <div class="wave" id="wave3"></div>
+          <div class="wave" id="wave4"></div>
+        </div>
+        <div class="contacts">
+          <a class="email_link"> Powered By Edoardo Ascenzi </a>
+          <a class="social-icon__link" href="https://github.com/edoardoascenzi">
+            <ion-icon name="logo-github"></ion-icon>
+          </a>
+          <a
+            class="social-icon__link"
+            href="https://www.linkedin.com/in/edoardoascenzi/?locale=en_US"
+          >
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+          <a
+            class="social-icon__link"
+            href="https://www.instagram.com/edo_asce/"
+          >
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+          <a
+            class="social-icon__link"
+            href="mailto:edoardo.ascenzi97@gmail.com"
+          >
+            <ion-icon name="mail"></ion-icon>
+          </a>
+        </div>
+      </footer>
+      <script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></script>
+      <script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></script>
     </div>
 
     <!-- Main content area where we will add the music player -->
@@ -77,10 +127,16 @@
         progress.style.width = `${progressPercentage}%`;
 
         // Update current time text
-        const currentHours = Math.floor(audioPlayer.currentTime / (60*60))
-        const currentMinutes = Math.floor( audioPlayer.currentTime/60 - currentHours*60 )
-        const currentSeconds = Math.floor(audioPlayer.currentTime - currentMinutes * 60 - currentHours*60*60);
-        currentTimeElement.textContent = `${currentHours}:${currentMinutes.toString().padStart(2, "0")}:${currentSeconds.toString().padStart(2, "0")}`;
+        const currentHours = Math.floor(audioPlayer.currentTime / (60 * 60));
+        const currentMinutes = Math.floor(
+          audioPlayer.currentTime / 60 - currentHours * 60
+        );
+        const currentSeconds = Math.floor(
+          audioPlayer.currentTime - currentMinutes * 60 - currentHours * 60 * 60
+        );
+        currentTimeElement.textContent = `${currentHours}:${currentMinutes
+          .toString()
+          .padStart(2, "0")}:${currentSeconds.toString().padStart(2, "0")}`;
       });
 
       progressBar.addEventListener("click", (e) => {

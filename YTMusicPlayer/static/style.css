@@ -15,7 +15,7 @@ html,body{
 }
 ::selection{
   background: #170faf;
-  color: #afdde5;
+  color: #5978a5;
 }
 .wrapper{
   width: 400px;
@@ -120,7 +120,8 @@ form .field input[type="submit"]{
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #170faf, #afdde5);
+  /* background: linear-gradient(-135deg, #170faf, #afdde5); */
+  background: #5978a5;
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active{
@@ -135,7 +136,7 @@ form .login-link{
 form .pass-link a,
 form .signup-link a,
 form .login-link a{
-  color: #afdde5;
+  color: #5978a5;
   text-decoration: none;
 }
 
@@ -154,7 +155,7 @@ form .login-link a:hover,
 }
 
 .wrapper .link{
-  color: #afdde5;
+  color: #5978a5;
   text-decoration: none;
   font-size: 15px;
 }
@@ -210,8 +211,14 @@ form .login-link a:hover,
   margin: 0 10px;
 }
 
+.wrapper .music-player .player-controls .control-btn {
+  color: #5978a5;
+}
+
+
 .wrapper .music-player .player-controls .play-btn {
   padding: 0 5px;
+
 }
 
 .wrapper .music-player .progress-bar {
@@ -226,7 +233,8 @@ form .login-link a:hover,
 .wrapper .music-player .progress {
   height: 100%;
   width: 0%;
-  background: linear-gradient(to right, #170faf, #afdde5); 
+  /* background: linear-gradient(to right, #170faf, #afdde5);  */
+  background: #5978a5;
   border-radius: 5px; 
 }
 
@@ -269,3 +277,187 @@ form .login-link a:hover,
 }
 
 
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+
+/* footer */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  background: #333;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-height: 100vh;
+} */
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: #5978a5;
+  min-height: 30px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+.social-icon__link {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 0.5rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.contacts{
+  display: flex;
+  align-items: center;
+}
+
+.contacts .email_link {
+  font-size: 0.7rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+.menu__link:hover {
+  opacity: 1;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.wave {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: url("wave.svg");
+  background-size: 250px 60px;
+}
+
+.wave#wave1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWaves 9s linear infinite;
+}
+
+.wave#wave2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 3px;
+  animation: animate 10s linear infinite !important;
+}
+
+.wave#wave3 {
+  z-index: 1000;
+  opacity: 0.2;
+  bottom: 6px;
+  animation: animateWaves 8s linear infinite;
+}
+
+.wave#wave4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 9px;
+  animation: animate 84s linear infinite;
+}
+
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}

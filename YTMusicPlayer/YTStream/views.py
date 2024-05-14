@@ -157,10 +157,10 @@ def fatch_video_info(video_id):
     title = response_data.get('title', "")
     channelTitle = response_data.get('channelTitle', "")
     thumbnailSmall = response_data.get('thumbnail', [{}] )[0].get('url',"")
-    thumbnail = response_data.get('thumbnail', [{}] )[2].get('url',"")
+    thumbnail = response_data.get('thumbnail', [{}] )[-1].get('url',"")
     lengthSeconds = response_data.get('lengthSeconds', 0)
     # adaptiveFormats is a list of dict -> inside the 21th item there is the url of the audio stream
-    audio_url = response_data.get('adaptiveFormats', [{}])[21].get('url',"")
+    audio_url = response_data.get('adaptiveFormats', [{}])[-1].get('url',"")
 
     if status == "" or audio_url == "":
         return None
