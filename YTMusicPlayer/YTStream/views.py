@@ -156,7 +156,7 @@ def fatch_video_info(video_id):
     status = response_data.get('status', "")
     title = response_data.get('title', "")
     channelTitle = response_data.get('channelTitle', "")
-    thumbnailSmall = response_data.get('thumbnail', [{}] )[1].get('url',"")
+    thumbnailSmall = response_data.get('thumbnail', [{}] )[0].get('url',"")
     thumbnail = response_data.get('thumbnail', [{}] )[2].get('url',"")
     lengthSeconds = response_data.get('lengthSeconds', 0)
     # adaptiveFormats is a list of dict -> inside the 21th item there is the url of the audio stream
@@ -164,6 +164,11 @@ def fatch_video_info(video_id):
 
     if status == "" or audio_url == "":
         return None
+    
+    lengthSeconds = int(lengthSeconds)
+    hours = int(lengthSeconds/(60*60))
+    minutes = int(lengthSeconds/60 - hours*60)
+    seconds = int(lengthSeconds - minutes*60 - hours*60**2)
 
     video_info = {
         'video_id' : video_id,
@@ -172,7 +177,7 @@ def fatch_video_info(video_id):
         'thumbnailSmall' : thumbnailSmall,
         'thumbnail' : thumbnail,
         'channelTitle' : channelTitle,
-        'lengthSeconds' : lengthSeconds,
+        'duration_text' : f"{hours}:{minutes:02}:{seconds:02}",
         'audio_url' : audio_url,
     }
 

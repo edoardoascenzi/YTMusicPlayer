@@ -1,4 +1,4 @@
-<h1>Welcome {{user.username}}</h1>
+{% comment %} <h1>Welcome {{user.username}}</h1>
 <form action="" method="POST">
   {% csrf_token %}
   <div>
@@ -32,4 +32,53 @@
     <h3 class="channel-title">{{video_info.channelTitle}}</h3>
   </div>
   {% endfor %}
-</form>
+</form> {% endcomment %}
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YT Music Player</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    
+    <!-- Sidebar remains unchanged -->
+    <div class="wrapper">
+      <div class="welcome">
+        <b>Welcome, {{user.username}}</b>
+      </div>
+      <div class="link-container">
+        <a href="/logout" , class="link"> Logout </a>
+      </div>
+      <br />
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="search-bar">
+          <input type="text" placeholder="YouTube Link" required name="YT_url" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div>
+       
+          {% for video_info in video_infos %}
+          <a style="text-decoration: none;" href="/stream/{{video_info.video_id}}"  class="search-results">
+          <div class="album-cover-container">
+            <img class="album-cover" src="{{video_info.thumbnailSmall}}" alt="Thumbnail" />
+          </div>
+          <div class="song-info">
+            <b class="video-title">{{video_info.title}}</b> <br>
+            <b class="channel-title">{{video_info.channelTitle}}</b>
+          </div>
+        </a>
+        {% endfor %}
+      </br>
+    </div>
+
+
+  </body>
+</html>
