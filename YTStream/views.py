@@ -107,25 +107,38 @@ def resolve_url(url):
     return "" if the format of the link is not correct
     else extract the video ID
     """
-    if 'www.youtube.com/watch?v=' not in url:
-        return ""
-    separator1 = url.find("=")
-    separator2 = url.find("&")
-    
-    if separator1 == -1:
-        # = key not found
-        return ""
-    
-    if separator2 != -1:
-        # & key found, so consider it
-        id = url[separator1+1:separator2]
-    else:
-        # & key not found, so take till the end
-        id = url[separator1+1:]
+    if 'www.youtube.com/watch?v=' in url:
+        separator1 = url.find("=")
+        separator2 = url.find("&")
+        
+        if separator1 == -1:
+            # = key not found
+            return ""
+        
+        if separator2 != -1:
+            # & key found, so consider it
+            id = url[separator1+1:separator2]
+        else:
+            # & key not found, so take till the end
+            id = url[separator1+1:]
 
-    if len(id) != 11:
-        # id is either too long or too short
-        return ""
+        if len(id) != 11:
+            # id is either too long or too short
+            return ""
+    # for link from app share 
+    elif 'youtu.be/' in url:
+        index1 = url.find('youtu.be/') + len('youtu.be/') 
+        separator2 = url.find('?')
+        
+        if separator2 == -1:
+            # ? key not found
+            
+            return ""
+        
+        id = url[index1:separator2]
+        if len(id) != 11:
+            # id is either too long or too short
+            return ""
     
     return id
 
