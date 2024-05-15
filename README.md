@@ -10,6 +10,8 @@
 
 - The Youtube stream will be played thorugh a YT API found on RAPID API (https://rapidapi.com/ytjar/api/yt-api). The free plan is limited to 500 request/day, that's okay for my purpose rn.
 
+- The web app is deployed in an AWS server (they have free ones) using nginx as web server and using gunicorn as supervisor
+
 ### Future features to add
 
 - Some kind of shazam thing that shows the track id while streaming the set
