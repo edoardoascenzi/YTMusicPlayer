@@ -10,7 +10,9 @@
 
 - The Youtube stream will be played thorugh a YT API found on RAPID API (https://rapidapi.com/ytjar/api/yt-api). The free plan is limited to 500 request/day, that's okay for my purpose rn.
 
-- The web app is deployed in an AWS server (they have free ones) using nginx as web server and using gunicorn as supervisor
+- The web app is deployed in on an EC2 istance (AWS - they have free ones) using nginx as web server and using gunicorn as supervisor
+
+- I bought a domain on https://www.hostinger.it/ to host it. The web app is available at [edoardoascenzi.fun](https://edoardoascenzi.fun/) (I bought it for 1,5€/y so if you are trying to reach after 17/05/2025 and it is not working, probably it's cause I'm not paying anymore this domain). The certificate for https is done by certbot
 
 ### Future features to add
 
