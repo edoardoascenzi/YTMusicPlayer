@@ -183,7 +183,6 @@ def fatch_video_info(video_id):
     for quality in qualityList:
         if quality in audioQuality_adaptiveFormats.keys():
             audio_url = audioQuality_adaptiveFormats[quality]
-            print(quality)
             break
 
 
