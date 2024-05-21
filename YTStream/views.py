@@ -172,8 +172,20 @@ def fatch_video_info(video_id):
     thumbnailSmall = response_data.get('thumbnail', [{}] )[0].get('url',"")
     thumbnail = response_data.get('thumbnail', [{}] )[-1].get('url',"")
     lengthSeconds = response_data.get('lengthSeconds', 0)
-    # adaptiveFormats is a list of dict -> inside the 21th item there is the url of the audio stream
-    audio_url = response_data.get('adaptiveFormats', [{}])[-1].get('url',"")
+
+    # get all the adaptiveFormats
+    adaptiveFormats = response_data.get('adaptiveFormats', [{}])
+    # make a dict like audioQuality : url
+    audioQuality_adaptiveFormats = {item['audioQuality']: item['url'] for item in adaptiveFormats if "audioQuality" in item.keys()}
+    qualityList = ["AUDIO_QUALITY_ULTRAHIGH", "AUDIO_QUALITY_HIGH", "AUDIO_QUALITY_MEDIUM", "AUDIO_QUALITY_LOW", "AUDIO_QUALITY_ULTRALOW"]
+    audio_url = ""
+    #in this way we get always the best quality available
+    for quality in qualityList:
+        if quality in audioQuality_adaptiveFormats.keys():
+            audio_url = audioQuality_adaptiveFormats[quality]
+            print(quality)
+            break
+
 
     if status == "" or audio_url == "":
         return None

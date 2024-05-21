@@ -14,12 +14,9 @@
 
 - I bought a domain on https://www.hostinger.it/ to host it. The web app is available at [edoardoascenzi.fun](https://edoardoascenzi.fun/) (I bought it for 1,5€/y so if you are trying to reach after 17/05/2025 and it is not working, probably it's cause I'm not paying anymore this domain). The certificate for https is done by certbot
 
-### Future features to add
+### Release
 
-- Some kind of shazam thing that shows the track id while streaming the set
+- 19/05/2024 -> First Release
 
-- Add the whole youtube features, not just the link, like the browsing, the playlist thing,..
+- 21/05/2024 -> Bug Fix with smartphone Youtube links | Pick always the best audio quality available 
 
-- Save the history of the videos played
-
-- Add remeber me and forgot password feature
